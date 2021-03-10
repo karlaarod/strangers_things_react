@@ -1,35 +1,57 @@
 import React from 'react';
-import { useParams } from 'react-router-dom'
 import { callApi } from '../api';
+import { useHistory, useParams } from 'react-router-dom';
 
 
 
 
-const Post = ({posts}) => {
-
+const Post = ({posts, setPosts, token, userData}) => {
+const history= useHistory()
 const {postId} = useParams();
 const post = posts.find((post) => postId === post._id);
+const userId= userData._id
 
-// {postId !== undefined && <Post posts={posts} />}
 
 const handleDelete = async ()=>{
-    const { data: { posts } } = await callApi ({
+    const {success} = await callApi ({
         url: `/posts/${post._id}`,
+        token: token,
+        method:'DELETE'
     });
-    return posts;
+    if(success){
+        alert('Post Deleted!')
+        history.push('/dashboard')
+        setPosts([...posts])
+
+    }
+
 }
+
   if (!post){
       return <div></div>
-  }
-    return (
-        <>
+  } 
+  const postAuthor = post.author._id;
+
+  return (
+
+        <div className='single-post'>
              <h5> {post.title} </h5>
              <div> Posted by: { post.author.username }</div>
              <div> Location: { post.location }</div>
              <div> Description: { post.description }</div>
              <div>Price : ${post.price}</div>
              <div>Delivers: { post.willDeliver ? 'Yes' : 'No' }</div>
-        </>
+             {userId === postAuthor && postAuthor? (
+             <button onClick= {handleDelete}>Delete</button>)
+             : null
+             }
+             {userId !== postAuthor ? (
+            <button
+            onClick= {() =>{
+            history.push(`/posts/${postId}/messages`)
+            }} > Reply</button>) : null
+            }
+        </div>
     )
 
 

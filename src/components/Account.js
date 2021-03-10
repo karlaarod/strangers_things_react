@@ -26,7 +26,7 @@ const Account = ({ action, setToken, setUserData }) => {
             setUsername('');
             setPassword('');
             setToken(token);
-            history.push('/');
+            history.push('/dashboard');
         }
     };
 

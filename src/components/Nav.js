@@ -1,16 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-const Nav = () =>{
+
+
+
+
+
+const Nav = ({userData, setUserData, setToken}) =>{
+    console.log('nav id', userData._id)
+    const history = useHistory();
+
+    const logOut = () => {
+        localStorage.clear();
+        setUserData({});
+        setToken('');
+        history.push("/");
+    
+};
+
 
 return (
     <header>
-    <img src="logo.png"></img>
+    <img src="/logo.png"></img>
     <div className='nav-links'>
-    <a href= '/'>Home</a>
-    <a href= '/posts'>Posts</a>
-    
-    <a href= '/login'>My Account</a>
-    <a href= '#'>Log Out</a>
+    <Link to ='/'>Home</Link>
+    <Link to='/posts'>Posts</Link>
+    <Link to='/dashboard'>Profile</Link>
+    {userData._id ? (
+        <Link to="/" onClick={() => logOut()}>
+              Logout
+        </Link>
+          ) : (
+        <Link to='/login'>
+              Login / Register
+        </Link>
+    )}
     </div>
     </header>
 )

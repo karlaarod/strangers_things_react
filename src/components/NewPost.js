@@ -1,41 +1,47 @@
 import React, {useState} from 'react';
 import { callApi } from '../api';
+import { useHistory } from 'react-router-dom';
+
 
 
 const NewPost = ({posts, setPosts, token}) =>{
     const [title, setTitle] = useState('');
     const [description, setDescription]= useState('')
     const [price, setPrice] = useState ('');
-    const [location, setLocation] = useState ('');
+    const [location, setLocation] = useState ('On Request');
     const [willDeliver, setWillDeliver] = useState (false);
+    const history= useHistory ();
+
 
     const handleOnSubmit = async (event) => {
         event.preventDefault();
 
-        const data = await callApi({
+        const { data, success, error } = await callApi({
             url: `/posts`,
+            method: 'POST',
+            token: token,
             body: { post:  
           {  title,
-        description,
-        price,
-        location,
-        willDeliver}
+            description,
+            price,
+            location,
+            willDeliver}
                 },
-            method: 'POST',
-            token: token
         })
+        if(data && success && data.post)
+        {setPosts([ ...posts, data.post])}
+        console.log(posts)
+        console.log(data)
 
-            // history.push(`/posts/${post._id}`);
-            console.log(data)
-        
-        setPosts([data.post, ...posts])
+        history.push(`/posts/`);
  
 
     }
 
     return (
     
-        <form onSubmit = {handleOnSubmit}>        
+        <form className='add-post' onSubmit = {handleOnSubmit}>       
+        <h2>Create New Post:</h2> 
         <input type= 'text' placeholder= 'title' 
         value = {title}
         onChange= {(event)=>{
@@ -54,12 +60,22 @@ const NewPost = ({posts, setPosts, token}) =>{
             setPrice(event.target.value)
         }}
         ></input>
-        <input type= 'text' placeholder= 'Location' 
-        value= {location}
+        <input type= 'text' placeholder= 'Location'
+        value={location} 
         onChange= {(event)=> {
-            {location? setLocation(event.target.value) : setLocation(['[On Request]'])}
+            setLocation(event.target.value)
         }}
         ></input>
+        <select
+        value= {true}
+        onChange= {(event)=> {
+         setWillDeliver(event.target.value)
+        }}
+        >
+        <option >Able to Deliver?</option>
+        <option value='yes'>Yes</option>
+        <option value='no'>No</option>
+        </select>
         <button>Add Post</button>
         </form>
     

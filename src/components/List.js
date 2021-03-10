@@ -25,8 +25,6 @@ const List = ({ posts }) => {
     const postsDisplay = searchTerm.length > 0 ?
     posts.filter((post) => postMatches(post, searchTerm)) : posts;
 
-
-
     return (
         <>
             
@@ -44,7 +42,7 @@ const List = ({ posts }) => {
              <button>SEARCH</button>
             </div>
             <div className='post-list'>
-            { postsDisplay.length > 0 ? (
+            { postsDisplay.length > 0 && postsDisplay ? (
                 postsDisplay.map(( post ) => (
                     <div key= {post._id} className= 'post'>
                 <h5>{post.title}</h5>
