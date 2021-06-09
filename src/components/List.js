@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { CircularProgress } from "@material-ui/core";
+
 
 const postMatches = (post, searchTerm) =>{
     const searchTermLowercase= searchTerm.toLowerCase();
@@ -18,12 +20,17 @@ const postMatches = (post, searchTerm) =>{
     }
 }
 
-const List = ({ posts }) => {
+const List = ({ posts, loading }) => {
     const history = useHistory();
     const [searchTerm, updateSearchTerm] = useState ('')
 
     const postsDisplay = searchTerm.length > 0 ?
     posts.filter((post) => postMatches(post, searchTerm)) : posts;
+
+    if (loading){
+        return <CircularProgress className='loading-icon'/> ;
+
+    }
 
     return (
         <>

@@ -6,10 +6,13 @@ import { useHistory, useParams } from 'react-router-dom';
 
 
 const Post = ({posts, setPosts, token, userData}) => {
+
 const history= useHistory()
 const {postId} = useParams();
 const post = posts.find((post) => postId === post._id);
 const userId= userData._id
+
+console.log('post:', post)
 
 
 const handleDelete = async ()=>{

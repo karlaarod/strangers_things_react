@@ -1,17 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
 
 * {
-  border: 0;
   margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 20px;
+  margin: 0;
+  padding: 0;
   color: #555;
   font-size: 20px;
   width: auto;
+  background-color: rgba(147, 208, 212, 0.322);
 }
 
 #app {
@@ -23,16 +25,22 @@ h1 {
   font-family: "Courier New", Courier, monospace;
 }
 header {
+  background-color: white;
+}
+
+nav {
+  padding: 0 20px;
   display: flex;
   align-content: center;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 10px;
-  padding-left: 90px;
-  padding-right: 90px;
-  background-color: white;
-  margin: 20px;
-  border-radius: 40px;
+}
+
+nav img, .nav-links {
+  margin-top: 80px;
+  margin-bottom: 20px;
+
+  padding: 5px;
 }
 
 button {
@@ -42,11 +50,17 @@ button {
 }
 
 .nav-links a {
-  font-size: 24px;
+  font-size: 15px;
   padding: 10px;
+  text-transform: uppercase;
+  color: #555;
+  text-decoration: none;
 }
 
-.title-page,
+.nav-links a:hover {
+  color: chocolate;
+}
+
 .sign-in-message {
   text-align: center;
   display: flex;
@@ -55,6 +69,38 @@ button {
   align-items: center;
   height: 500px;
   font-size: 30px;
+}
+
+.title-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.left-side {
+  width: 60%;
+}
+
+.right-side {
+  width: 40%;
+}
+
+.home-img {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.right-side h2 {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-family: cursives;
 }
 
 .account-form {
@@ -67,7 +113,7 @@ button {
   top: 60px;
   height: 500px;
   width: 400px;
-  background-color: rgba(166, 216, 219, 0.678);
+  background-color: rgba(239, 225, 210, 0.801);
   box-shadow: 5px 5px 15px 5px rgba(59, 57, 57, 0.281);
 }
 
@@ -77,7 +123,7 @@ button {
   justify-content: center;
   align-content: center;
   height: 500px;
-  background-color: rgba(166, 216, 219, 0.678);
+  background-color: rgba(239, 225, 210, 0.801);
   padding: 10px;
   box-shadow: 5px 5px 15px 5px rgba(59, 57, 57, 0.281);
 }
@@ -115,20 +161,22 @@ h2 {
 }
 
 .post-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
-  margin: 40px;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
   overflow: scroll;
+  width: 100%;
+  margin: auto;
 }
 
 .post {
-  width: 460px;
+  width: 420px;
   height: 200px;
   padding: 20px;
-  border: 2px solid black;
-  background-color: rgba(166, 216, 219, 0.678);
+  border: 1px solid black;
+  background-color: rgba(239, 225, 210, 0.801);
 }
 
 .search-bar {
@@ -220,6 +268,11 @@ aside > button {
   flex-direction: column;
   margin: 30px;
   padding: 20px;
-  background-color: rgba(166, 216, 219, 0.678);
+  background-color: rgba(239, 225, 210, 0.801);
   box-shadow: 5px 5px 15px 5px rgba(59, 57, 57, 0.281);
+}
+
+.loading-icon {
+  margin-left: 35em;
+  margin-top: 15em;
 }
