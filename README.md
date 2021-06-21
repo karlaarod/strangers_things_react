@@ -8,7 +8,7 @@ Project done to learn CRUD (an acronym for Create, Read, Update, Destroy), how t
 
 1. Clone this repo
 2. Run `npm install` from inside the cloned directory
-3. `npm run "start` will make great things happen!
+3. `npm run start` will make great things happen!
 
 ### Deployment
 
